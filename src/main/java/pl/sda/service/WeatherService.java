@@ -14,8 +14,15 @@ public class WeatherService {
     }
 
     public String getWeatherForLondon(){
-        String jsonWeather = repository.readRawJason();
-        log.info("json weather: {}",jsonWeather);
+      String jsonWeather = repository.readRawJason();
+      log.info("json weather: {}",jsonWeather);
         return jsonWeather;
     }
+
+    public String getWeatherForCity(String city){
+        String result = repository.readWeatherForCity(city);
+        log.info("city [{}] weather [{}]",city, result);
+        return result;
+    }
+
 }
