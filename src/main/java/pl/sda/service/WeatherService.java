@@ -1,8 +1,10 @@
 package pl.sda.service;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 import pl.sda.repository.WeatherRepository;
 @Slf4j
+@Service
 public class WeatherService {
 
     private WeatherRepository repository;
