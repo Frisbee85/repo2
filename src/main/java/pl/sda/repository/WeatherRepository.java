@@ -1,6 +1,7 @@
 package pl.sda.repository;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestTemplate;
@@ -10,7 +11,8 @@ import java.util.Map;
 @Slf4j
 @Repository
 public class WeatherRepository {
-    private RestTemplate restTemplate;
+    private final RestTemplate restTemplate;
+    private final String applicationKey;
 
     private static final String LONDON_CONNECTION_URL =
             "https://samples.openweathermap.org/data/2.5/weather?q=London,uk&appid=439d4b804bc8187953eb36d2a8c26a02";
@@ -20,8 +22,10 @@ public class WeatherRepository {
 
     private static final String DEFAULT_KEY = "439d4b804bc8187953eb36d2a8c26a02";
 
-    public WeatherRepository(final RestTemplate restTemplate) {
+    public WeatherRepository(final RestTemplate restTemplate, @Value("${weather.key}") String applicationKey) {
         this.restTemplate = restTemplate;
+        this.applicationKey= applicationKey;
+        log.info("weather.key: [{}]",applicationKey);
     }
 
     public String readRawJason() {
