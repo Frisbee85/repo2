@@ -6,3 +6,7 @@ weather:
 
 myParam:
   key: ${My_Param.key:true}
+
+logging:
+  level:
+    pl.sda: debug
