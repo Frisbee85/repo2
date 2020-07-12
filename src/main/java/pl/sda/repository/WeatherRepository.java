@@ -14,6 +14,7 @@ public class WeatherRepository {
     private final RestTemplate restTemplate;
     private final String applicationKey;
 
+
     private static final String LONDON_CONNECTION_URL =
             "https://samples.openweathermap.org/data/2.5/weather?q=London,uk&appid=439d4b804bc8187953eb36d2a8c26a02";
 
@@ -22,7 +23,10 @@ public class WeatherRepository {
 
     private static final String DEFAULT_KEY = "439d4b804bc8187953eb36d2a8c26a02";
 
-    public WeatherRepository(final RestTemplate restTemplate, @Value("${weather.key}") String applicationKey) {
+    public WeatherRepository(final RestTemplate restTemplate,
+                            // @Value("${WEATHER_KEY:no-key}") String applicationKey) {
+                             @Value("${weather.key:no-key}") String applicationKey) {
+
         this.restTemplate = restTemplate;
         this.applicationKey= applicationKey;
         log.info("weather.key: [{}]",applicationKey);
