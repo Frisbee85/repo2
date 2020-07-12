@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestTemplate;
+import pl.sda.domain.Weather;
+import pl.sda.domain.WeatherForecast;
 
 import java.util.Map;
 
@@ -52,5 +54,13 @@ public class WeatherRepository {
             return response.getBody();
         }
         return "{}";
+    }
+    public WeatherForecast weatherForecastForGivenCity(String city){
+        WeatherForecast result = restTemplate.getForObject(CONNECTION_URL,WeatherForecast.class,
+                Map.<String,String>of(
+                        "city", city,
+                "key", DEFAULT_KEY));
+        log.info("received weather: [{}]",result);
+        return result;
     }
 }

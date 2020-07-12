@@ -5,4 +5,4 @@ weather:
     key: ${WEATHER_KEY:439d4b804bc8187953eb36d2a8c26a02}
 
 myParam:
-  key: ${myParam.key:true}
+  key: ${My_Param.key:true}
